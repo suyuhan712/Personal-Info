@@ -5,4 +5,29 @@ import Avatar from '../components/Avatar.astro';
 import {getCollection} from 'astro:content';
 const posts=(await getCollection('posts',({data})=>!data.draft)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
 ---
-<Layout><section class="hero"><div><Avatar /><p class="eyebrow">生活手记</p><h1>{profile.intro.split('\n').map(line=><span>{line}</span>)}</h1><p class="intro">{profile.bio.trim() || profile.about}</p><a class="text-link" href="/about/">认识一下我 <span>↗</span></a><div class="hero-note"><span class="dot"></span> 慢一点，也没关系。</div></div><figure class="art"><div class="landscape"><div class="moon"></div><div class="hill back"></div><div class="hill front"></div><div class="vase"></div><div class="stem one"></div><div class="stem two"></div><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div></div><figcaption>把平凡的瞬间，轻轻收藏。 <span>窗边</span></figcaption></figure></section><section class="entries"><div class="section-heading"><div><h2>最近写下的</h2></div><a class="text-link" href="/journal/">全部手记 ↗</a></div>{posts.slice(0,3).map((post,i)=><a class="entry" href={'/posts/'+post.id+'/'}><div><div class="meta">{post.data.category} <span> / </span> {post.data.date.toISOString().slice(0,10).replaceAll('-','.')}</div><h3>{post.data.title}</h3><p>{post.data.description}</p></div><span class="entry-arrow">↗</span></a>)}</section><section class="subscribe"><div class="subscribe-icon">✳</div><div><p class="eyebrow">LET’S STAY IN TOUCH</p><h2>偶尔更新，一直在这里。</h2><p>把这份小小的日常，放进你的阅读器。</p></div><a class="button" href="/subscribe/">订阅我的 RSS ↗</a></section></Layout>
+<Layout><section class="hero"><div><Avatar /><p class="eyebrow">生活手记</p><h1>{profile.intro.split('\n').map(line=><span>{line}</span>)}</h1><p class="intro">{profile.bio.trim() || profile.about}</p><a class="text-link" href="/about/">认识一下我 <span>↗</span></a></div><figure class="art art-refined" aria-hidden="true">
+<svg class="quiet-landscape" viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="quiet-sky" x1="240" y1="0" x2="240" y2="400" gradientUnits="userSpaceOnUse"><stop stop-color="#DCE9EB"/><stop offset="1" stop-color="#F2F2E9"/></linearGradient>
+    <linearGradient id="quiet-pot" x1="302" y1="268" x2="375" y2="324" gradientUnits="userSpaceOnUse"><stop stop-color="#789493"/><stop offset="1" stop-color="#456C70"/></linearGradient>
+  </defs>
+  <path fill="url(#quiet-sky)" d="M0 0h480v400H0z"/>
+  <circle cx="134" cy="105" r="43" fill="#F6E4B4"/>
+  <circle cx="134" cy="105" r="56" stroke="#F6E4B4" stroke-opacity=".3"/>
+  <path d="M0 258C78 207 115 228 185 219S328 167 480 222V400H0Z" fill="#BCCFD0"/>
+  <path d="M0 286C94 231 160 256 245 270S393 229 480 251V400H0Z" fill="#8FADAF"/>
+  <path d="M0 329C105 280 195 291 284 321S407 317 480 290V400H0Z" fill="#6C9298"/>
+  <path d="M0 353C130 334 293 347 480 366V400H0Z" fill="#E2E4D9"/>
+  <ellipse cx="339" cy="357" rx="60" ry="8" fill="#456C70" opacity=".12"/>
+  <path d="M336 280C332 234 345 188 363 139M337 254C319 226 302 207 287 190M341 222C361 204 376 188 384 171" stroke="#4E7067" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M352 173C346 148 357 127 376 120C378 142 370 164 352 173Z" fill="#698879"/>
+  <path d="M345 198C320 190 312 172 314 156C334 162 346 179 345 198Z" fill="#54796D"/>
+  <path d="M360 207C364 184 378 173 399 174C391 194 379 205 360 207Z" fill="#7B9786"/>
+  <path d="M310 220C285 220 274 205 272 187C293 189 306 201 310 220Z" fill="#698879"/>
+  <path d="M335 245C350 224 365 221 382 226C370 243 353 248 335 245Z" fill="#54796D"/>
+  <path d="M306 276Q304 271 311 270H365Q372 271 370 276L364 330Q361 353 338 354Q315 353 312 330Z" fill="url(#quiet-pot)"/>
+  <ellipse cx="338" cy="272" rx="31" ry="5" fill="#8CA6A0"/>
+  <path d="M336 274L336 263" stroke="#4E7067" stroke-width="2.5"/>
+  <path d="M320 287L324 327" stroke="#C5D4C9" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</figure></section><section class="entries"><div class="section-heading"><div><h2>最近写下的</h2></div><a class="text-link" href="/journal/">全部手记 ↗</a></div>{posts.slice(0,3).map((post,i)=><a class="entry" href={'/posts/'+post.id+'/'}><div><div class="meta">{post.data.category} <span> / </span> {post.data.date.toISOString().slice(0,10).replaceAll('-','.')}</div><h3>{post.data.title}</h3><p>{post.data.description}</p></div><span class="entry-arrow">↗</span></a>)}</section><section class="subscribe"><div class="subscribe-icon">✳</div><div><p class="eyebrow">LET’S STAY IN TOUCH</p><h2>偶尔更新，一直在这里。</h2><p>把这份小小的日常，放进你的阅读器。</p></div><a class="button" href="/subscribe/">订阅我的 RSS ↗</a></section></Layout>
